@@ -27,10 +27,30 @@ document.addEventListener('DOMContentLoaded', function() {
                 "SQL databases for Site, Monitoring, and Logging are separate.",
                 "Local Host Cache is enabled, and DDCs use a single socket CPU configuration.",
                 "SSL Certificates are installed on DDCs to encrypt XML traffic from StoreFront.",
-                "'Trust XML Requests' is enabled for pass-through authentication and FAS.",
-                "Citrix Studio Admins are audited and assigned via AD Groups, not individual users.",
+                "'Trust XML Requests' is enabled for pass-through authentication and FAS."
+            ]
+        },
+        {
+            category: "Citrix Studio",
+            items: [
+                "Citrix Studio consoles on admin machines are the same version as the DDCs.",
+                "Customer Experience Improvement Program (CEIP) is disabled in Studio.",
+                "Licensing Model/Edition in Studio matches the purchased licenses.",
+                "Studio Administrators are audited and assigned via AD Groups, not individual users.",
                 "Applications are published to AD Groups.",
-                "The hypervisor connection uses a service account with minimum required permissions."
+                "The hypervisor connection uses a service account with minimum required permissions.",
+                "Each Hosting Resource has only one datastore selected.",
+                "StoreFront URLs are assigned via GPO, not configured in Delivery Groups within Studio."
+            ]
+        },
+        {
+            category: "Citrix License Server",
+            items: [
+                "Citrix License Server is a recent version to resolve known vulnerabilities.",
+                "The license server is uploading telemetry as required by Citrix.",
+                "Installed licenses match the purchased licenses on citrix.com.",
+                "Subscription Advantage dates are not expired.",
+                "The license server disaster recovery procedure is documented and tested."
             ]
         },
         {
@@ -44,20 +64,36 @@ document.addEventListener('DOMContentLoaded', function() {
             ]
         },
         {
+            category: "Citrix Director",
+            items: [
+                "Director version matches the DDC version.",
+                "If multiple Director servers exist, anti-affinity is configured.",
+                "SSL certificate is installed, and access is enforced over HTTPS.",
+                "Director website is load balanced, with SSL between the load balancer and the servers.",
+                "Director Alerts are configured to email admins (Premium Edition).",
+                "For Premium Edition, ADM HDX Insight is integrated with Director via HTTPS."
+            ]
+        },
+        {
             category: "VDA - Master Image Build",
             items: [
                 "Master Image build process is documented and automated (e.g., using BIS-F).",
                 "Security scan of the Master Image shows compliance with enterprise security policies.",
                 "VDA version is patched for the latest security vulnerabilities.",
                 "Antivirus is installed and optimized for non-persistent (VDI) environments.",
-                "Other IT agents (e.g., SCCM) are optimized for non-persistent machines.",
                 "Citrix Optimizer or similar has been used to remove unnecessary components and optimize the OS.",
-                "Windows Updates are current.",
-                "Power management is set to High Performance.",
-                "If using PVS, the pagefile is sized appropriately for the cache disk, and Event Logs are redirected.",
                 "FSLogix is a recent version and is used for Outlook/Search roaming.",
-                "Microsoft Teams is installed using the machine-wide installer and is periodically updated.",
-                "For NVIDIA vGPU, the guest driver is installed before the VDA software."
+                "Microsoft Teams is installed using the machine-wide installer and is periodically updated."
+            ]
+        },
+        {
+            category: "Citrix App Layering",
+            items: [
+                "Enterprise Layer Manager (ELM) version is current and supports the CVAD/Windows versions in use.",
+                "The 'Directory Junction Bind' account is a service account.",
+                "The ELM appliance is backed up, or layers are exported periodically.",
+                "Hypervisor Connectors use a service account with limited permissions.",
+                "Offload Compositing is enabled in Connectors."
             ]
         },
         {
@@ -65,11 +101,10 @@ document.addEventListener('DOMContentLoaded', function() {
             items: [
                 "PVS Server version matches the DDC version.",
                 "Multiple PVS servers are used for HA, with hypervisor anti-affinity.",
-                "PVS servers have sufficient RAM for vDisk caching (2-3 GB per active vDisk).",
+                "PVS servers have sufficient RAM for vDisk caching.",
                 "vDisks are in VHDX format, dynamically sized, and defragmented.",
                 "Target Device boot method (PXE/DHCP) is highly available.",
                 "Target Device write cache is configured for 'RAM with overflow to disk'.",
-                "Target Devices are evenly distributed across PVS servers.",
                 "The System Reserved Partition has been removed from inside the vDisk."
             ]
         },
@@ -82,23 +117,39 @@ document.addEventListener('DOMContentLoaded', function() {
                 "The legacy 'DisableGPCalculation' registry key does not exist, to ensure policies apply on reconnect.",
                 "Client drive mapping, clipboard, and USB are disabled for external connections by default.",
                 "Universal Print Driver is enforced to avoid installing native print drivers on VDAs.",
-                "Audio quality is set to Medium to conserve bandwidth.",
-                "Adaptive Transport (EDT) is enabled.",
-                "Session Reliability is enabled."
+                "Adaptive Transport (EDT) is enabled."
             ]
         },
         {
-            category: "Profile Management & WEM",
+            category: "Citrix Profile Management and Folder Redirection",
             items: [
-                "Profile Management is configured via GPO, not WEM or Citrix Policy.",
+                "Profile Management is configured via GPO.",
                 "The profile file share is highly available and close to the VDAs.",
                 "No DFS multi-master replication is used for profile shares.",
                 "NTFS permissions on the profile share grant users exclusive rights to their own folders.",
                 "Profile streaming is enabled, and Active Write Back is disabled.",
                 "AppData folder is NOT redirected.",
-                "If using WEM, it is a recent version, deployed in HA, and agents point to an LB FQDN.",
+                "For Folder Redirection, 'Grant the user exclusive rights' option is unchecked in the GPO."
+            ]
+        },
+        {
+            category: "Citrix Workspace Environment Management (WEM)",
+            items: [
+                "WEM is a recent version, deployed in HA, and agents point to an LB FQDN.",
                 "In WEM, CPU Optimization and Fast Logoff are enabled.",
-                "Unused WEM action types are disabled to speed up logons."
+                "Unused WEM action types are disabled to speed up logons.",
+                "WEM Agent Offline mode is enabled.",
+                "A computer startup script refreshes the WEM Agent cache on each VDA reboot."
+            ]
+        },
+        {
+            category: "Endpoint Devices",
+            items: [
+                "Browser Content Redirection is enabled to offload video from VDAs.",
+                "The deployed Citrix Workspace app version is recent and patched for vulnerabilities.",
+                "Workspace app GPO templates (.admx) are current in SYSVOL.",
+                "GPO pushes the StoreFront URL to Workspace app for users.",
+                "Pass-through authentication (SSON) is enabled and working for internal PCs."
             ]
         }
     ];
