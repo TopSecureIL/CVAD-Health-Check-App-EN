@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health Check Report Generator - Citrix CVAD</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Citrix Virtual Apps & Desktops Health Check Form</h1>
+            <p>Fill out the form and click "Generate Report" at the bottom to create a summary document.</p>
+        </header>
+
+        <form id="healthCheckForm">
+            <div class="form-section client-details">
+                <h2>Check Details</h2>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td><label for="clientName">Customer Name:</label></td>
+                            <td><input type="text" id="clientName" name="clientName"></td>
+                        </tr>
+                        <tr>
+                            <td><label for="checkDate">Date of Check:</label></td>
+                            <td><input type="date" id="checkDate" name="checkDate"></td>
+                        </tr>
+                        <tr>
+                            <td><label for="checkedBy">Checked By:</label></td>
+                            <td><input type="text" id="checkedBy" name="checkedBy"></td>
+                        </tr>
+                         <tr>
+                            <td><label for="cvadVersion">CVAD Version:</label></td>
+                            <td><input type="text" id="cvadVersion" name="cvadVersion"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            </form>
+
+        <button type="button" onclick="generateReport()">Generate Report</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
